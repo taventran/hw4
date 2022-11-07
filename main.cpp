@@ -4,7 +4,14 @@
 
 using namespace std;
 
-
+// TO DO
+// Make Priority Queue that holds everything from .txt file
+// Make regular Queue that holds strings that requires decoding
+// Make replace function 
+// Make add function
+// Make remove function
+// Make swap function
+// Make BST 
 
 int main(int argc, char* argv[]) {
 
@@ -17,9 +24,11 @@ int main(int argc, char* argv[]) {
 
     string line;
     vector<string> lines;
+
     while(getline(ifs, line)) {
         lines.push_back(line);
     }
+
 
 
     return 1;

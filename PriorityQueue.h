@@ -1,9 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
-
 using namespace std;
-
 
 struct node {
     int priority;
@@ -17,5 +15,6 @@ class PriorityQueue {
     public:
         PriorityQueue() {head=nullptr;};
         void push(int, string);
-        node* pop();
+        bool isEmpty() {return head==nullptr;};
+        string pop();
 };
