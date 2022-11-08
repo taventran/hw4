@@ -1,5 +1,7 @@
 #include "ArgumentManager.h"
+#include "PriorityQueue.cpp"
 #include <fstream>
+#include "Command.h"
 #include <vector>
 
 using namespace std;
@@ -13,6 +15,24 @@ using namespace std;
 // Make swap function
 // Make BST 
 
+PriorityQueue parseData(vector<string> lines) {
+    PriorityQueue q;
+    for (int i = 0; i < lines.size(); i++) {
+        string line = lines.at(i);
+        int cmdIndex = line.find(":");
+        string cmd = line.substr(0, cmdIndex);
+        int dataIndex = line.find("[");
+        int endDataIndex = line.find("]");
+        string data = line.substr(dataIndex+1, endDataIndex-dataIndex-1);
+        cout << cmd << endl;
+        int numIndex = line.find("(");
+        int endNumIndex = line.find(")");
+        int num = stoi(line.substr(numIndex+1, endNumIndex-numIndex-1));
+        q.push(cmd, data, num);
+    }
+    return q;
+}
+
 int main(int argc, char* argv[]) {
 
     ArgumentManager am(argc, argv);
@@ -23,13 +43,25 @@ int main(int argc, char* argv[]) {
     ofstream ofs(output);
 
     string line;
-    vector<string> lines;
-
+    vector<string> lines;   
+    string traversal;
     while(getline(ifs, line)) {
+        if (line.find(':') == string::npos) {
+            traversal = line; // should always be last line so it's safe to break
+            break;
+        }
         lines.push_back(line);
     }
+  
+    PriorityQueue q = parseData(lines); // Gets correct data to push into priority queue
+    cout << endl;
+    // Testing priority queue
+    // while (!q.isEmpty()) {
+    //     node* temp = q.pop();
+    //     std::cout << temp->data << " " <<  temp->priority << std::endl;
+    // }
 
-
+    commands(q);
 
     return 1;
 }

@@ -1,9 +1,10 @@
 #include "PriorityQueue.h"
 
-void PriorityQueue::push(int num, string line) {
+void PriorityQueue::push(string command, string data, int num) {
     node* temp = new node();
     temp->priority = num;
-    temp->data = line;
+    temp->data = data;
+    temp->command = command;
 
     if (isEmpty()) {
         head = temp;
@@ -38,13 +39,12 @@ void PriorityQueue::push(int num, string line) {
     cur->next = temp; // New tail
 }
 
-
-string PriorityQueue::pop() {
+node* PriorityQueue::pop() {
     if (!isEmpty()) {
         node* temp = head;
-        string data;
         head = head->next;
-        delete temp;
-        return data;
+        return temp;
     }
+    return nullptr;
 }
+

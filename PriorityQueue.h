@@ -6,6 +6,7 @@ using namespace std;
 struct node {
     int priority;
     string data;
+    string command;
     node* next;
 };
 
@@ -14,7 +15,7 @@ class PriorityQueue {
         node* head;
     public:
         PriorityQueue() {head=nullptr;};
-        void push(int, string);
+        void push(string, string, int);
         bool isEmpty() {return head==nullptr;};
-        string pop();
+        node* pop();
 };
