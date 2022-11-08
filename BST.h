@@ -8,11 +8,7 @@ struct info {
     string data;
     info* left;
     info* right;
-    info(string d) {
-        data = d;
-        left = nullptr;
-        right = nullptr;
-    }
+
 };
 
 class BST {
@@ -20,8 +16,9 @@ class BST {
         info* root;
     public:
         BST() {root=nullptr;};
+        void insertNode(string data);
         info* getRoot() {return root;};
-        void insert(string data, info* root);
+        void insert(info*& root, info*& newNode);
         void inOrderTraversal(info*);
         void preOrderTraversal(info*);
         void postOrderTraversal(info*);

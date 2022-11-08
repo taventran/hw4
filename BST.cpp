@@ -1,47 +1,51 @@
 #include "BST.h"
+#include <iostream>
 
 using namespace std;
 
-void BST::insert(string data, info* root) { 
-    info* temp = new info(data);
+void BST::insertNode(string data) {
+    info* newNode = new info();
+    newNode->data = data;
+    newNode->left = newNode->right = nullptr;
+    insert(root, newNode);
+}
 
-    if (root == nullptr) {
-        root = temp;
-        return;
-    }
+void BST::insert(info*& root, info*& newNode) { 
+  if (root == nullptr) {
+    root = newNode;
+  } 
+  else if (newNode->data <= root->data) {
+    insert(root->left, newNode);
+  } 
+  else {
+    insert(root->right, newNode);
+  }
 
-    else if (data.length() <= root->data.length()) {
-       insert(data, root->left);
-    }
-
-    else if (data.length() > root->data.length()) {
-        insert(data, root->right);
-    }
+   
 }
 
 void BST::inOrderTraversal(info* root) {
-    if (root == nullptr) {
-        return;
+    std::cout << "DOES THIS RUN" << std::endl;
+    if (root != nullptr) {
+        inOrderTraversal(root->left);
+        cout << root->data << endl;
+        inOrderTraversal(root->right);
     }
-    inOrderTraversal(root->left);
-    std::cout << root->data;
-    inOrderTraversal(root->right);
 }
 
 void BST::preOrderTraversal(info* root) {
-    if (root == nullptr) {
-        return;
+    if (root != nullptr) {
+        cout << root->data;
+        preOrderTraversal(root->left);
+        preOrderTraversal(root->right);
     }
-    std::cout << root->data;
-    preOrderTraversal(root->left);
-    preOrderTraversal(root->right);
+
 }
 
 void BST::postOrderTraversal(info* root) {
-    if (root == nullptr) {
-        return;
+    if (root != nullptr) {
+        postOrderTraversal(root->left);
+        postOrderTraversal(root->right);
+        cout << root->data;
     }
-    postOrderTraversal(root->left);
-    postOrderTraversal(root->right);
-    std::cout << root->data;
 }

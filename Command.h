@@ -1,5 +1,5 @@
 #pragma once
-#include "PriorityQueue.h"
+#include "PriorityQueue.cpp"
 #include "Queue.cpp"
 #include "BST.cpp"
 #include <string>
@@ -8,6 +8,7 @@
 using namespace std;
 
 void decode(Queue& message, string data) {
+    std::cout << data << std::endl;
     message.push(data);
 }
 
@@ -18,31 +19,38 @@ void commands(PriorityQueue& q) {
      
     while(!q.isEmpty()) {
         node* temp = q.pop();
+        cout << temp->command << endl;
         if (temp->command == "DECODE") {
             decode(message, temp->data);
         }
         else if (temp->command == "REPLACE") {
-            cout << "REPLACE" << endl;
+            //cout << "REPLACE" << endl;
         }
         else if (temp->command == "ADD") {
-            cout << "ADD" << endl;
+            //cout << "ADD" << endl;
         }
         else if (temp->command == "SWAP") {
-            cout << "SWAP" << endl;
+            //cout << "SWAP" << endl;
         }
         else if (temp->command == "BST") {
-            tree.insert(message.pop()->data, tree.getRoot());
+            std::cout << "RAN" << std::endl;
+            if (message.isEmpty()) {
+                continue;
+            }
+            string data = message.pop()->data;
+            std::cout << data << std::endl;
+            tree.insertNode(data);
+            std::cout << "STILL WORKING?" << std::endl;
         }
         else if (temp->command == "REMOVE") {
-            cout << "REMOVE" << endl;
+            //cout << "REMOVE" << endl;
         }
         else {
             cout << "ERROR" << endl;
         }
     }
-    while (!message.isEmpty()) {
-        cout << message.pop()->data << endl;
-    }
+    
     tree.inOrderTraversal(tree.getRoot());
+    
 }
 

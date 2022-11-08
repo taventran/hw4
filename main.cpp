@@ -1,5 +1,4 @@
 #include "ArgumentManager.h"
-#include "PriorityQueue.cpp"
 #include <fstream>
 #include "Command.h"
 #include <vector>
@@ -24,7 +23,6 @@ PriorityQueue parseData(vector<string> lines) {
         int dataIndex = line.find("[");
         int endDataIndex = line.find("]");
         string data = line.substr(dataIndex+1, endDataIndex-dataIndex-1);
-        cout << cmd << endl;
         int numIndex = line.find("(");
         int endNumIndex = line.find(")");
         int num = stoi(line.substr(numIndex+1, endNumIndex-numIndex-1));
@@ -52,16 +50,24 @@ int main(int argc, char* argv[]) {
         }
         lines.push_back(line);
     }
-  
-    PriorityQueue q = parseData(lines); // Gets correct data to push into priority queue
-    cout << endl;
-    // Testing priority queue
-    // while (!q.isEmpty()) {
-    //     node* temp = q.pop();
-    //     std::cout << temp->data << " " <<  temp->priority << std::endl;
-    // }
 
-    commands(q);
+    BST tree;
+    tree.insertNode("HELLO WORLD");
+    tree.insertNode("TESTING");
+    tree.insertNode("sdjkhfajkfhjkfhjksadfhjiwdfhkjlfds");
+    std::cout << tree.getRoot()->data;
+    std::cout << tree.getRoot()->left->data;
+    tree.inOrderTraversal(tree.getRoot());
+
+    // PriorityQueue q = parseData(lines); // Gets correct data to push into priority queue
+    // // cout << endl;
+    // // // Testing priority queue
+    // // while (!q.isEmpty()) {
+    // //     node* temp = q.pop();
+    // //     std::cout << temp->command << " " <<  temp->priority << std::endl;
+    // // }
+
+    // commands(q);
 
     return 1;
 }
