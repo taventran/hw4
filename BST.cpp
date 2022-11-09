@@ -1,5 +1,6 @@
 #include "BST.h"
-#include <iostream>
+
+
 
 using namespace std;
 
@@ -19,33 +20,30 @@ void BST::insert(info*& root, info*& newNode) {
   } 
   else {
     insert(root->right, newNode);
-  }
-
-   
+  }   
 }
 
-void BST::inOrderTraversal(info* root) {
-    std::cout << "DOES THIS RUN" << std::endl;
+void BST::inOrderTraversal(info* root, ofstream& ofs) {
     if (root != nullptr) {
-        inOrderTraversal(root->left);
-        cout << root->data << endl;
-        inOrderTraversal(root->right);
+        inOrderTraversal(root->left, ofs);
+        ofs << root->data << endl;
+        inOrderTraversal(root->right, ofs);
     }
 }
 
-void BST::preOrderTraversal(info* root) {
+void BST::preOrderTraversal(info* root, ofstream& ofs) {
     if (root != nullptr) {
-        cout << root->data;
-        preOrderTraversal(root->left);
-        preOrderTraversal(root->right);
+        ofs << root->data << endl;
+        preOrderTraversal(root->left, ofs);
+        preOrderTraversal(root->right, ofs);
     }
 
 }
 
-void BST::postOrderTraversal(info* root) {
+void BST::postOrderTraversal(info* root, ofstream& ofs) {
     if (root != nullptr) {
-        postOrderTraversal(root->left);
-        postOrderTraversal(root->right);
-        cout << root->data;
+        postOrderTraversal(root->left, ofs);
+        postOrderTraversal(root->right, ofs);
+        ofs << root->data << endl;
     }
 }

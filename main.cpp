@@ -51,23 +51,37 @@ int main(int argc, char* argv[]) {
         lines.push_back(line);
     }
 
-    BST tree;
-    tree.insertNode("HELLO WORLD");
-    tree.insertNode("TESTING");
-    tree.insertNode("sdjkhfajkfhjkfhjksadfhjiwdfhkjlfds");
-    std::cout << tree.getRoot()->data;
-    std::cout << tree.getRoot()->left->data;
-    tree.inOrderTraversal(tree.getRoot());
+    // BST tree;
+    // tree.insertNode("HELLO WORLD");
+    // tree.insertNode("TESTING");s
+    // tree.insertNode("sdjkhfajkfhjkfhjksadfhjiwdfhkjlfds");
+    // std::cout << tree.getRoot()->data;
+    // std::cout << tree.getRoot()->left->data;
+    // tree.inOrderTraversal(tree.getRoot());s
+    
 
-    // PriorityQueue q = parseData(lines); // Gets correct data to push into priority queue
-    // // cout << endl;
-    // // // Testing priority queue
-    // // while (!q.isEmpty()) {
-    // //     node* temp = q.pop();
-    // //     std::cout << temp->command << " " <<  temp->priority << std::endl;
-    // // }
+    PriorityQueue q = parseData(lines); // Gets correct data to push into priority queue
+   
+    // Testing priority queue
+    // while (!q.isEmpty()) {
+    //     node* temp = q.pop();
+    //     std::cout << temp->command << " " <<  temp->priority << std::endl;
+    // }
 
-    // commands(q);
+    BST tree = commands(q);
+    if (traversal == "Inorder") {
+        tree.inOrderTraversal(tree.getRoot(), ofs);
+    }
+    else if (traversal == "Preorder") {
+        tree.preOrderTraversal(tree.getRoot(), ofs);
+    }
+    else if (traversal == "Postorder")
+    {
+        tree.postOrderTraversal(tree.getRoot(), ofs);
+    }
+    else {
+        return 0;
+    }
 
     return 1;
 }

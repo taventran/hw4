@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ class BST {
         void insertNode(string data);
         info* getRoot() {return root;};
         void insert(info*& root, info*& newNode);
-        void inOrderTraversal(info*);
-        void preOrderTraversal(info*);
-        void postOrderTraversal(info*);
+        void inOrderTraversal(info*, ofstream&);
+        void preOrderTraversal(info*, ofstream&);
+        void postOrderTraversal(info*, ofstream&);
 };
